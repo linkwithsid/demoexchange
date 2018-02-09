@@ -1,4 +1,5 @@
 package com.exchange.server.demoexchange.controller;
+
 import com.exchange.server.demoexchange.Service.ExchangeService;
 import com.exchange.server.demoexchange.dao.ExchangeDao;
 import com.exchange.server.demoexchange.entity.StockEntity;
@@ -22,42 +23,38 @@ public class ExchangeControllerImpl implements ExchangeController {
 
     @Override
     public Stock getStock(@PathVariable("id") String stockId) {
-        logger.info("Inside ExchangeControllerImpl getStock method, stockId = " +stockId);
+        logger.info("Inside ExchangeControllerImpl getStock method, stockId = " + stockId);
         Stock stock = exchangeService.getStock(stockId);
-        logger.info("Exiting ExchangeControllerImpl getStock method, stockId = " +stockId + ", company name = " +stock.getCompanyName());
+        logger.info("Exiting ExchangeControllerImpl getStock method, stockId = " + stockId + ", company name = " + stock.getCompanyName());
         return stock;
     }
 
     @Override
     public String createStock(@RequestBody Stock stock) {
         logger.info("Inside ExchangeControllerImpl createStock method");
-        if(null!=stock && !StringUtils.isEmpty(stock.getStockId())
+        if (null != stock && !StringUtils.isEmpty(stock.getStockId())
                 && !StringUtils.isEmpty(stock.getCompanyName())
                 && !StringUtils.isEmpty(stock.getPrice())) {
 
             String companyName = exchangeService.createStock(stock);
             logger.info("Exiting ExchangeControllerImpl createStock method");
             return companyName + " added in DB";
-        }
-        else
+        } else
             logger.info("Exiting ExchangeControllerImpl createStock method, information not valid");
-            return "Give Valid Info";
+        return "Give Valid Info";
     }
-
 
 
     @Override
     public Stock updateStock(@RequestBody Stock stock) {
-        logger.info("Exiting ExchangeControllerImpl createStock method");
+        logger.info("Inside ExchangeControllerImpl updateStock method");
 
-             if(null!=stock && !StringUtils.isEmpty(stock.getStockId())
+        if (null != stock && !StringUtils.isEmpty(stock.getStockId())
                 && !StringUtils.isEmpty(stock.getCompanyName())
-                && !StringUtils.isEmpty(stock.getPrice()))
-        {
+                && !StringUtils.isEmpty(stock.getPrice())) {
             stock = exchangeService.updateStock(stock);
-            return  stock;
-
-            }
+        }
+        logger.info("Exiting ExchangeControllerImpl updateStock method");
         return stock;
 
     }

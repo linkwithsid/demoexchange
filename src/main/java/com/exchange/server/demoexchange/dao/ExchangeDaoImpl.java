@@ -1,14 +1,12 @@
 package com.exchange.server.demoexchange.dao;
 
 import com.exchange.server.demoexchange.entity.StockEntity;
-import com.exchange.server.demoexchange.model.Stock;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @Repository
 public class ExchangeDaoImpl implements ExchangeDao {
@@ -48,7 +46,6 @@ public class ExchangeDaoImpl implements ExchangeDao {
         } catch (Exception e) {
             logger.error("Save failed, Exiting ExchangeDaoImpl insertStock" + e);
         }
-        logger.info("");
         return null;
     }
 
