@@ -17,18 +17,40 @@ public class ExchangeServiceImpl implements ExchangeService{
     public static final Logger logger = LoggerFactory.getLogger(ExchangeServiceImpl.class);
 
     @Override
+    public Stock getStock(String stockId) {
+        StockEntity stockEntity =  stockDao.getStockById(stockId);
+        return mapEntityToModel(stockEntity);
+    }
+
+    @Override
     public String createStock(Stock stock) {
 
         logger.info("Inside ExchangeServiceImpl createStock method");
-
-        StockEntity stockEntity = mapData(stock); //map data to entity object
+        StockEntity stockEntity = mapModelToEntity(stock); //map data to entity object
 
         stockDao.insertStock(stockEntity);
         logger.info("Exiting ExchangeServiceImpl createStock method");
         return stockEntity.getCompanyName();
     }
 
-    private StockEntity mapData(Stock stock) {
+    @Override
+    public Stock updateStock(Stock stock)
+    {
+        StockEntity stockEntity = mapModelToEntity(stock);
+        stockDao.updateStock(stockEntity);
+        stock = mapEntityToModel(stockEntity);
+        return stock;
+    }
+
+    private Stock mapEntityToModel(StockEntity stockEntity) {
+        Stock stock = new Stock();
+        stock.setStockId(stockEntity.getStockId());
+        stock.setPrice(stockEntity.getPrice());
+        stock.setCompanyName(stockEntity.getCompanyName());
+        return stock;
+    }
+
+    private StockEntity mapModelToEntity(Stock stock) {
         StockEntity stockEntity = new StockEntity();
         stockEntity.setStockId(stock.getStockId());
         stockEntity.setCompanyName(stock.getCompanyName());

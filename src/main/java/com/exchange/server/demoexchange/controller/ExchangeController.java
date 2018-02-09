@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface ExchangeController {
 
     /**
-     *  This method returns stock Details based on stock id.
-     *
+     * This method returns stock Details based on stock id
      * @param stockId
      * @return Stock
      */
@@ -19,15 +18,17 @@ public interface ExchangeController {
 
     /**
      * This method makes entry of stock in DB.
+     * @param stock
      * @return status
      */
     @RequestMapping (value = "/stock" , method = RequestMethod.POST)
     String createStock(@RequestBody Stock stock);
 
+
     /**
-     * This method makes updates entry of stock
-     * .
-     * @return
+     *  This method makes updates entry of stock
+     * @param stock
+     * @return Stock
      */
     @RequestMapping (value = "/stock" , method = RequestMethod.PUT)
     Stock updateStock(@RequestBody Stock stock);

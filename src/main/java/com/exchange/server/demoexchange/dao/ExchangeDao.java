@@ -4,10 +4,13 @@ import com.exchange.server.demoexchange.entity.StockEntity;
 
 
 public interface ExchangeDao {
+
     /**
      *
-     * @param stockEntity
+     * @param stockId
      * @return
      */
+    StockEntity getStockById(String stockId);
     StockEntity insertStock(StockEntity stockEntity);
+    StockEntity updateStock(StockEntity stockEntity);
 }
