@@ -1,8 +1,6 @@
 package com.exchange.server.demoexchange.controller;
 
 import com.exchange.server.demoexchange.Service.ExchangeService;
-import com.exchange.server.demoexchange.dao.ExchangeDao;
-import com.exchange.server.demoexchange.entity.StockEntity;
 import com.exchange.server.demoexchange.model.Stock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
