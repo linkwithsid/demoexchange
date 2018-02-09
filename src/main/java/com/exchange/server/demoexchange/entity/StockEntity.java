@@ -6,17 +6,8 @@ import javax.persistence.*;
 @Table(name="stock_information")
 public class StockEntity {
 
-    /**
-     * id
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Integer id;
 
-    /**
-     * stockId
-     */
+    @Id
     @Column(name="stock_id")
     private String stockId;
 
@@ -31,15 +22,6 @@ public class StockEntity {
      */
     @Column(name="stock_price")
     private String price;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getStockId() {
         return stockId;

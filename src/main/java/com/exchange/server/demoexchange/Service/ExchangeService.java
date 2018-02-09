@@ -6,8 +6,10 @@ public interface ExchangeService {
 
     /**
      *
-     * @param stock
+     * @param stockId
      * @return
      */
-    public String createStock(Stock stock);
+    Stock getStock(String stockId);
+    String createStock(Stock stock);
+    Stock updateStock(Stock stock);
 }

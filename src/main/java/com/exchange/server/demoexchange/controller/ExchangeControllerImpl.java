@@ -23,10 +23,7 @@ public class ExchangeControllerImpl implements ExchangeController {
     @Override
     public Stock getStock(@PathVariable("id") String stockId) {
         logger.info("Inside ExchangeControllerImpl getStock method, stockId = " +stockId);
-        Stock stock = new Stock();
-        stock.setStockId(stockId);
-        stock.setCompanyName("Xebia");
-        stock.setPrice("452.89");
+        Stock stock = exchangeService.getStock(stockId);
         logger.info("Exiting ExchangeControllerImpl getStock method, stockId = " +stockId + ", company name = " +stock.getCompanyName());
         return stock;
     }
@@ -51,9 +48,18 @@ public class ExchangeControllerImpl implements ExchangeController {
 
     @Override
     public Stock updateStock(@RequestBody Stock stock) {
-        logger.info("Inside ExchangeControllerImpl createStock method");
-
         logger.info("Exiting ExchangeControllerImpl createStock method");
-        return null;
+
+             if(null!=stock && !StringUtils.isEmpty(stock.getStockId())
+                && !StringUtils.isEmpty(stock.getCompanyName())
+                && !StringUtils.isEmpty(stock.getPrice()))
+        {
+            stock = exchangeService.updateStock(stock);
+            return  stock;
+
+            }
+        return stock;
+
     }
+
 }
