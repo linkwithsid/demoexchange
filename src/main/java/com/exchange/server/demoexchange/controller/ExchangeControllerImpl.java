@@ -2,6 +2,7 @@ package com.exchange.server.demoexchange.controller;
 
 import com.exchange.server.demoexchange.Service.ExchangeService;
 import com.exchange.server.demoexchange.model.Stock;
+import com.exchange.server.demoexchange.model.StockResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +29,21 @@ public class ExchangeControllerImpl implements ExchangeController {
     }
 
     @Override
-    public String createStock(@RequestBody Stock stock) {
+    public StockResponse createStock(@RequestBody Stock stock) {
         logger.info("Inside ExchangeControllerImpl createStock method");
+        StockResponse stockResponse = new StockResponse();
         if (null != stock && !StringUtils.isEmpty(stock.getStockId())
                 && !StringUtils.isEmpty(stock.getCompanyName())
                 && !StringUtils.isEmpty(stock.getPrice())) {
 
             String companyName = exchangeService.createStock(stock);
             logger.info("Exiting ExchangeControllerImpl createStock method");
-            return companyName + " added in DB";
+            stockResponse.setStatusMessage(companyName + " added in DB");
+            return stockResponse;
         } else
             logger.info("Exiting ExchangeControllerImpl createStock method, information not valid");
-        return "Give Valid Info";
+        stockResponse.setStatusMessage("Give Valid Info");
+        return stockResponse;
     }
 
 
