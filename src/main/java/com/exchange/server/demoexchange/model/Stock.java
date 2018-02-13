@@ -21,4 +21,4 @@ public class Stock {
     private String companyName;
 
 
-    }
+}

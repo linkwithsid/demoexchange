@@ -1,6 +1,7 @@
 package com.exchange.server.demoexchange.controller;
 
 import com.exchange.server.demoexchange.model.Stock;
+import com.exchange.server.demoexchange.model.StockResponse;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,7 @@ public interface ExchangeController {
      * @return status
      */
     @RequestMapping (value = "/stock" , method = RequestMethod.POST)
-    String createStock(@RequestBody Stock stock);
+    StockResponse createStock(@RequestBody Stock stock);
 
 
     /**
